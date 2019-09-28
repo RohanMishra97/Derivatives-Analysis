@@ -1,0 +1,106 @@
+﻿<Window x:Class="DerivativeAnalysis.OptionFutures"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DerivativeAnalysis"
+        mc:Ignorable="d"
+        Title="OptionFutures" Height="300" Width="300"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto" 
+        Background="{DynamicResource MaterialDesignPaper }"
+        FontFamily="{DynamicResource MaterialDesignFont }">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="4*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="4*">
+            </ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="2*">
+            </RowDefinition>
+            <RowDefinition Height="12*">
+            </RowDefinition>
+            <RowDefinition Height="1*">
+            </RowDefinition>
+        </Grid.RowDefinitions>
+        <Canvas x:Name="menuForOptions" Grid.Column="1" Grid.Row="0" >
+            <TextBox x:Name="textBox" Height="27" Canvas.Left="24" TextWrapping="Wrap" Text="" 
+                     Canvas.Top="35" Width="80" TextChanged="textBox_TextChanged"/>
+            <ComboBox x:Name="dropStrikePrice" Canvas.Left="280" Canvas.Top="35" Width="100" Height="22" FontFamily="Verdana" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ComboBox x:Name="comboBox" Grid.Column="1" 
+                      Width="100" Height="22"  Canvas.Left="150" Canvas.Top="35">
+                <ComboBoxItem Content="ComboBoxItem" HorizontalAlignment="Left" Width="95" />
+            </ComboBox>
+            <Label x:Name="label" Content="Search" Canvas.Left="24" Height="24" RenderTransformOrigin="0.675,0.625" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Verdana" Canvas.Top="6"/>
+            <Label x:Name="label1" Content="ExpDate" Canvas.Left="150" Canvas.Top="5"/>
+            <Label x:Name="label2" Content="Strike Price" Canvas.Left="280" Canvas.Top="5"/>
+        </Canvas>
+        <!-- this includes the search and two dropdowns -->
+        <DataGrid x:Name="dataGridOptions" HorizontalAlignment="Left" Margin="0,10,0,0" 
+                  VerticalAlignment="Top"
+                  Height="500" Width="auto"   Grid.Column="1" Grid.Row="1" SelectionChanged="dataGridOptions_SelectionChanged_1" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="SELECT"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="addBtn" Cursor="Arrow" >+</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <!-- this includes table for options -->
+        <Canvas x:Name="menuForFutures"    Grid.Row="0" Grid.Column="1" Visibility="Hidden">
+            <TextBox x:Name="searchFutures" Height="27" Canvas.Left="24" TextWrapping="Wrap" Text="" 
+                     Canvas.Top="35" Width="80" TextChanged="textBox_TextChanged"/>
+            <ComboBox x:Name="expDateFut" Grid.Column="1" 
+                      Width="100" Height="22"  Canvas.Left="150" Canvas.Top="35">
+                <ComboBoxItem Content="ComboBoxItem" HorizontalAlignment="Left" Width="95" />
+            </ComboBox>
+
+            <Label x:Name="labelSearchFut" Content="Search" Canvas.Left="24" Height="24" RenderTransformOrigin="0.675,0.625" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Verdana" Canvas.Top="6"/>
+            <Label x:Name="labelExpDate" Content="ExpDate" Canvas.Left="150" Canvas.Top="5"/>
+        </Canvas>
+        <DataGrid x:Name="dataGridFutures"  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Margin="0,10,0,0"
+                  Visibility="Hidden">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="SELECT"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="addBtn" Cursor="Arrow" >+</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="button" Content="Options" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="34,10,0,0" 
+                VerticalAlignment="Top" Width="75" Cursor="Arrow" Click="button_Click"/>
+        <Button x:Name="button1" Content="Futures" Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left" Margin="160,10,0,0"  
+                VerticalAlignment="Top" Width="75" Cursor="Arrow" Click="button1_Click"/>
+
+
+    </Grid>
+</Window>
+

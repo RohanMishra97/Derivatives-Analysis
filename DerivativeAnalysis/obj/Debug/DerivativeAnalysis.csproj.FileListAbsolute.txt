@@ -1,0 +1,82 @@
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\DerivativeAnalysis.exe.config
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\DerivativeAnalysis.exe
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\DerivativeAnalysis.pdb
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\MaterialDesignColors.dll
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\MaterialDesignThemes.Wpf.dll
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\MaterialDesignColors.pdb
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\MaterialDesignThemes.Wpf.pdb
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\MaterialDesignThemes.Wpf.xml
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.csprojResolveAssemblyReference.cache
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\MainWindow.g.cs
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\App.g.cs
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis_MarkupCompile.cache
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis_MarkupCompile.lref
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\App.baml
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\MainWindow.baml
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.g.resources
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.Properties.Resources.resources
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.csproj.GenerateResource.Cache
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.exe
+c:\users\nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.pdb
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\analyze.g.cs
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\analyze.baml
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\LiveCharts.dll
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\LiveCharts.pdb
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\LiveCharts.xml
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\chart.g.cs
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\chart.baml
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\OptionFutures.g.cs
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\Trade.g.cs
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\OptionFutures.baml
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\Trade.baml
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\chartUserControl.g.cs
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Nk\Documents\Visual Studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\chartUserControl.baml
+C:\Users\Nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\FutureBuy.g.cs
+C:\Users\Nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\OptionBuy.g.cs
+C:\Users\Nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\FutureBuy.baml
+C:\Users\Nk\documents\visual studio 2015\Projects\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\OptionBuy.baml
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\DerivativeAnalysis.exe.config
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.exe
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.pdb
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\DerivativeAnalysis.exe
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\DerivativeAnalysis.pdb
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\LiveCharts.dll
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\MaterialDesignColors.dll
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\LiveCharts.pdb
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\LiveCharts.xml
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.csprojResolveAssemblyReference.cache
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\analyze.g.cs
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\chart.g.cs
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\chartUserControl.g.cs
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\FutureBuy.g.cs
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\MainWindow.g.cs
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\OptionBuy.g.cs
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\OptionFutures.g.cs
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\Trade.g.cs
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\App.g.cs
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis_MarkupCompile.cache
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis_MarkupCompile.lref
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\App.baml
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\analyze.baml
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\chart.baml
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\chartUserControl.baml
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\FutureBuy.baml
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\MainWindow.baml
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\OptionBuy.baml
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\OptionFutures.baml
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\Trade.baml
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.g.resources
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.Properties.Resources.resources
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.csproj.GenerateResource.Cache
