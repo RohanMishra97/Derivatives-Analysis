@@ -8,18 +8,21 @@ namespace DerivativeAnalysis
 {
     class OptionTrade
     {
+        int opt_trade_id;
+        public int Opt_trade_id
+        { get { return opt_trade_id; } set { opt_trade_id = value; } }
         string option_id;
-        Nullable<DateTime> buying_date;
+        string buying_date;
         int num_lots;
         decimal premium;
-        string strategy_id { get; set; }
+        int strategy_id;
         string symbol { get; set; }
         string trade_type { get; set; }
 
         public string Option_id
         { get { return option_id; } set { option_id = value; } }
 
-        public Nullable<DateTime> Buying_date
+        public string Buying_date
         { get { return buying_date; } set { buying_date = value; } }
 
         public int Num_lots
@@ -27,7 +30,7 @@ namespace DerivativeAnalysis
         public decimal Premium
         { get { return premium; } set { premium = value; } }
 
-        public string Strategy_id
+        public int Strategy_id
         { get { return strategy_id; } set { strategy_id = value; } }
 
         public string Symbol
@@ -38,22 +41,24 @@ namespace DerivativeAnalysis
 
         public OptionTrade()
         {
+            this.opt_trade_id = -1;
             this.option_id = null;
             this.buying_date = null;
             this.num_lots = -1;
             this.premium = -1;
-            this.strategy_id = null;
+            this.strategy_id = -1;
             this.symbol = null;
             this.trade_type = null;
         }
-        public OptionTrade(string id, Nullable<DateTime> buydate, int lots, decimal premium,
-            string stratid, string sym, string tradetype)
+        public OptionTrade(int opt_trade_id, string opt_id, string buydate, int lots, decimal premium,
+            int strat_id, string sym, string tradetype)
         {
-            this.option_id = id;
+            this.opt_trade_id = opt_trade_id;
+            this.option_id = opt_id;
             this.buying_date = buydate;
             this.num_lots = lots;
             this.premium = premium;
-            this.strategy_id = stratid;
+            this.strategy_id = strat_id;
             this.symbol = sym;
             this.trade_type = tradetype;
         }

@@ -8,54 +8,53 @@ namespace DerivativeAnalysis
 {
     class Strategy
     {
-        Boolean whether_portfolio = false;
+        Boolean whether_portfolio;
+        public Boolean Whether_portfolio
+        { get { return whether_portfolio; } set { whether_portfolio = value; } }
         Boolean whether_MISC = false;
-        string strategy_name;
-        string strategy_id;
+        public Boolean Whether_MISC
+        { get { return whether_MISC; } set { whether_MISC = value; } }
+        String strategy_name;
+        public String Strategy_name
+        { get { return strategy_name; } set { strategy_name = value; } }
+        Int32 strategy_id;
+        public Int32 Strategy_id
+        { get { return strategy_id; } set { strategy_id = value; } }
         public FutureTrade[] fut_trades = new FutureTrade[100];
+        public FutureTrade[] Fut_trades { get { return fut_trades; } set { fut_trades = value; } }
         public OptionTrade[] opt_trades = new OptionTrade[100];
-        string user_id;
-        string symbol;
-        float max_profit;
-        float max_loss;
-        float capital_reqd;
-        float current_pl;
-        string bep;
-        float delta;
-        float theta;
-        float vega;
-        float gamma;
-        Nullable<DateTime> expiry_date;
-
-        public FutureTrade[] get_fut_trades() { return fut_trades; }
-        public void set_fut_trades(FutureTrade[] objarr) { this.fut_trades = objarr; }
-
-        public OptionTrade[] get_opt_trades() { return opt_trades; }
-        public void set_opt_trades(OptionTrade[] objarr) { this.opt_trades = objarr; }
-
-        public string get_strategy_name() { return strategy_name; }
-        public string get_strategy_id() { return strategy_id; }
-        public Boolean get_whether_MISC() { return whether_MISC; }
-        public void set_whether_MISC(Boolean whether_MISC) { this.whether_MISC = whether_MISC; }
-        public void set_symbol(string symbol) { this.symbol = symbol; }
-        public void set_strategy_name(string strategy_name) { this.strategy_name = strategy_name; }
-        public void set_strategy_id(string strategy_id) { this.strategy_id = strategy_id; }
-        public void set_user_id(string user_id) { this.user_id = user_id; }
-        public void set_max_profit(float max_profit) { this.max_profit = max_profit; }
-        public void set_max_loss(float max_loss) { this.max_loss = max_loss; }
-        public void set_capital_reqd(float capital_reqd) { this.capital_reqd = capital_reqd; }
-        public void set_bep(string bep) { this.bep = bep; }
-        public void set_delta(float delta) { this.delta = delta; }
-        public void set_theta(float theta) { this.theta = theta; }
-        public void set_vega(float vega) { this.vega = vega; }
-        public void set_gamma(float gamma) { this.gamma = gamma; }
-        public void set_expiry_date(Nullable<DateTime> exp_date) { this.expiry_date = exp_date; }
+        public OptionTrade[] Opt_trades { get { return opt_trades; } set { opt_trades = value; } }
+        Int32 user_id;
+        public Int32 User_id { get { return user_id; } set { user_id = value; } }
+        String symbol;
+        public String Symbol { get { return symbol; } set { symbol = value; } }
+        Decimal max_profit;
+        public Decimal Max_profit { get { return max_profit; } set { max_profit = value; } }
+        Decimal max_loss;
+        public Decimal Max_loss { get { return max_loss; } set { max_loss = value; } }
+        Decimal capital_reqd;
+        public Decimal Capital_reqd { get { return capital_reqd; } set { capital_reqd = value; } }
+        Decimal current_pl;
+        public Decimal Current_pl { get { return current_pl; } set { current_pl = value; } }
+        String bep;
+        public String Bep { get { return bep; } set { bep = value; } }
+        Decimal delta;
+        public Decimal Delta { get { return delta; } set { delta = value; } }
+        Decimal theta;
+        public Decimal Theta { get { return theta; } set { theta = value; } }
+        Decimal vega;
+        public Decimal Vega { get { return vega; } set { vega = value; } }
+        Decimal gamma;
+        public Decimal Gamma { get { return gamma; } set { gamma = value; } }
+        String expiry_date;
+        public String Expiry_date { get { return expiry_date; } set { expiry_date = value; } }
+        
         public Strategy()
         {
 
             this.strategy_name = null;
-            this.strategy_id = null;
-            this.user_id = null;
+            this.strategy_id = -1;
+            this.user_id = -1;
             this.symbol = null;
             this.max_profit = -1;
             this.max_loss = -1;
@@ -71,9 +70,9 @@ namespace DerivativeAnalysis
             this.opt_trades = null;
         }
 
-        public Strategy(string strategy_name, string strategy_id, string user_id, string symbol, float max_profit,
-            float max_loss, float capital_reqd, Nullable<DateTime> expiry_date, string bep, float delta, float theta,
-            float vega, float gamma, FutureTrade[] fut_trades, OptionTrade[] opt_trades, Nullable<DateTime> buydate)
+        public Strategy(String strategy_name, Int32 strategy_id, Int32 user_id, String symbol, Decimal max_profit,
+            Decimal max_loss, Decimal capital_reqd, String expiry_date, String bep, Decimal delta, Decimal theta,
+            Decimal vega, Decimal gamma, FutureTrade[] fut_trades, OptionTrade[] opt_trades, String buydate)
         {
             this.strategy_name = strategy_name;
             this.strategy_id = strategy_id;
