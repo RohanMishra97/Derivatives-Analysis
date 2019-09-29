@@ -35,7 +35,21 @@ namespace DerivativeAnalysis
             lot_dict.Add("YESBANK", 2200);
             lot_dict.Add("MARUTI", 75);
             lot_dict.Add("RELIANCE", 500);
+            lot_dict.Add("AXISBANK", 1200);
+            lot_dict.Add("BAJFINANCE", 250);
+            lot_dict.Add("BPCL", 1800);
+            lot_dict.Add("HDFC", 500);
+            lot_dict.Add("HDFCBANK", 500);
+            lot_dict.Add("ICICIBANK", 1375);
+            lot_dict.Add("ITC", 2400);
+            lot_dict.Add("LT", 375);
+            lot_dict.Add("SBIN", 3000);
+            lot_dict.Add("TATAMOTORS", 3000);
+            lot_dict.Add("TATASTEEL", 1061);
+            lot_dict.Add("TCS", 250);
+            lot_dict.Add("TITAN", 750);
             lot_dict.Add("NIFTY", 75);
+            lot_dict.Add("INFY", 1200);
 
             labelLotSize.Content = "x" + lot_dict[x.Symbol];
             valueMktPrice.Text = x.Ltp.ToString();
