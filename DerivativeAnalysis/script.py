@@ -231,6 +231,11 @@ def get_max_pl(p_l, p_l0):
     #print ("Maximum Profit: ", max_p*lot_size)
     #print ("Maximum Loss: ", max_l*lot_size)
     return max_p*lot_size, max_l*lot_size
+
+def get_curr_pl(pl):
+    for k,v in pl.items():
+        if k>=100.0:
+            return round(v/scale,2)
 	
 def combine_payoffs(p_ls):
     res_pl = {}
@@ -254,7 +259,9 @@ bep = get_breakeven(plc)
 #print (bep)
 
 capt = get_capital_reqd(trades)
-delta,theta,vega,gamma = get_greeks(trades)
+curr_pl = get_curr_pl(plc)
+roi = round(curr_pl/capt * (12),2)
+#delta,theta,vega,gamma = get_greeks(trades)
 #print(delta, theta, vega, gamma)
 
 query = '''
@@ -265,10 +272,8 @@ query = '''
             , max_loss = '''+str(max_l)+'''
             , bep = \''''+str(bep)+'''\'
             , capital_reqd = '''+str(capt)+'''
-            , delta = '''+str(round(delta,2))+'''
-            , theta = '''+str(round(theta,2))+'''
-            , vega = '''+str(round(vega,2))+'''
-            , gamma = '''+str(round(gamma,2))+'''
+            , curr_pl = '''+str(curr_pl)+'''
+            , roi = '''+str(roi)+'''
              WHERE strategy_id = '''+str(strategy_id)
     
 print (query)
