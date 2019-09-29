@@ -26,6 +26,7 @@ namespace DerivativeAnalysis
             InitializeComponent();
             valueSecurityName.Text = x.Symbol;
             valueMktPrice.Text = x.Ltp.ToString();
+            valuePrice.Text = x.Ltp.ToString();
             valueStrikePrice.Text = x.Strike_price.ToString();
             valueOi.Text = x.Oi.ToString();
             valueOiChange.Text = x.Oi_change.ToString();
