@@ -80,3 +80,12 @@ C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\Trade.baml
 C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.g.resources
 C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.Properties.Resources.resources
 C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.csproj.GenerateResource.Cache
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\doughnut.g.cs
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\doughnut.baml
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\payoff.g.cs
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\payoff.baml
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\RowChart.g.cs
+C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\RowChart.baml
+E:\DerivativeAnalysis\DerivativeAnalysis\bin\Debug\DerivativeAnalysis.exe.config
+E:\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.exe
+E:\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\DerivativeAnalysis.pdb

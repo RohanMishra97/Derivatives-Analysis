@@ -75,6 +75,9 @@
       <DependentUpon>chartUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Company.cs" />
+    <Compile Include="doughnut.xaml.cs">
+      <DependentUpon>doughnut.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FutureBuy.xaml.cs">
       <DependentUpon>FutureBuy.xaml</DependentUpon>
     </Compile>
@@ -88,8 +91,15 @@
     </Compile>
     <Compile Include="Options.cs" />
     <Compile Include="OptionTrade.cs" />
+    <Compile Include="payoff.xaml.cs">
+      <DependentUpon>payoff.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RowChart.xaml.cs">
+      <DependentUpon>RowChart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Strategy.cs" />
     <Compile Include="StrategyMember.cs" />
+    <Compile Include="Temp.cs" />
     <Compile Include="Trade.xaml.cs">
       <DependentUpon>Trade.xaml</DependentUpon>
     </Compile>
@@ -102,6 +112,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="chartUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="doughnut.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,6 +146,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OptionFutures.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="payoff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RowChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,6 +189,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\bull_icon.png" />
+    <Resource Include="images\dd.png" />
+    <Resource Include="images\images.jpg" />
+    <Resource Include="images\logo.png" />
+    <Resource Include="images\stockimg.jpg" />
+    <Resource Include="images\three-stacks-of-coins.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

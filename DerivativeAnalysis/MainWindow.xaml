@@ -5,108 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DerivativeAnalysis"
         xmlns:self="clr-namespace:DerivativeAnalysis"
+         xmlns:control = "clr-namespace:DerivativeAnalysis" 
         mc:Ignorable="d"
-        Title="MainWindow"  Width="1250" Height="650"
-       
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        Title="MainWindow"  Height="720" Width="1355" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"       
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-     TextElement.FontWeight="Regular"
-     TextElement.FontSize="13"
-     TextOptions.TextFormattingMode="Ideal"
-     TextOptions.TextRenderingMode="Auto"
-     Background="{DynamicResource MaterialDesignPaper}"
-     FontFamily="{DynamicResource MaterialDesignFont}">
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
 
-    <Grid Background="#FF343540">
-        <StackPanel x:Name="MenuOptions" Orientation="Vertical"  HorizontalAlignment="Left" Height="195" Margin="1,75,0,0" VerticalAlignment="Top" Width="158">
-            <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton"
-                    Content="Positions" Foreground="White" FontSize="15"/>
+    <Grid x:Name="nonName"  Background="#FF343540">
+        <StackPanel x:Name="MenuOptions" Orientation="Vertical"  HorizontalAlignment="Left" Height="195" Margin="1,120,0,0" VerticalAlignment="Top" Width="158">
             <Button x:Name="DashboardButton" Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton" 
-                    Content="Dashboard" Foreground="White" FontSize="15" Background="#FF43444F" Click="DashboardButton_Click"/>
+                    Content="Dashboard" Background="#FF43444F" Foreground="White" FontSize="15" Click="DashboardButton_Click"/>
+            <Button x:Name="OptionButton" Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton" 
+                    Content="Options" Foreground="White" FontSize="15" Click="OptionButton_Click" RenderTransformOrigin="0.506,-0.562" />
             <Button x:Name="FutureButton" Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton" 
                     Content="Futures" Foreground="White" FontSize="15" Click="FutureButton_Click" />
-            <Button x:Name="OptionButton" Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton" 
-                    Content="Options" Foreground="White" FontSize="15" Click="OptionButton_Click" />
             <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton" 
                     Content="Blog" Foreground="White" FontSize="15"/>
             <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton" Content="Team" Foreground="White" FontSize="15"/>
             <!--<Label x:Name="label" Content="Live Market Quotes" HorizontalAlignment="Left" Height="50" Margin="25,0,0,0" Width="166" VerticalAlignment="Top" FontFamily="Aharoni"/>-->
-
-
         </StackPanel>
 
-        <DataGrid Name="liveTicker" HorizontalAlignment="Left" Margin="0,281,0,0"
-    AutoGenerateColumns="False" VerticalAlignment="Top" Height="252" Width="208"  HorizontalScrollBarVisibility="Hidden"
-    VerticalScrollBarVisibility="Hidden" AlternationCount="2"  AlternatingRowBackground="#FF43444F" Background="#FF343540">
-            <DataGrid.Columns >
-                <DataGridTextColumn Header="Stock" Width="90"  Binding="{Binding symbol}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Quote" Width="100" Binding="{Binding value}"></DataGridTextColumn>
+        <DataGrid Name="liveTicker" HorizontalAlignment="Left" Margin="0,310,0,0" AutoGenerateColumns="False" VerticalAlignment="Top" Height="372" Width="145"  HorizontalScrollBarVisibility="Hidden"
+                  VerticalScrollBarVisibility="Hidden"  Background="#FF343540">
+            <!--AlternationCount="2"  AlternatingRowBackground="#FF43444F"-->
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Stock" Width="75"  Binding="{Binding symbol}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Quote" Width="130" Binding="{Binding value}"></DataGridTextColumn>
             </DataGrid.Columns>
-
         </DataGrid>
-        <!--<StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Left" Height="146" Margin="91,32,-628,0" Grid.Row="1" VerticalAlignment="Top" Width="898">
-            <materialDesign:Card Padding="1" Margin="16,16,671,0" Height="115" Width="151">
-                <materialDesign:Card.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                        <GradientStop Color="Black"/>
-                        <GradientStop Color="#FF1DC9B1" Offset="1"/>
-                    </LinearGradientBrush>
-                </materialDesign:Card.Background>
-                <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="0,0,663,0"><Run Text="Company"/></TextBlock>
-            </materialDesign:Card>
-            <materialDesign:Card Padding="1" Height="109" Width="152" VerticalAlignment="Center" Margin="-1100,19,0,18">
-                <materialDesign:Card.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="#FFDE2C2C" Offset="1"/>
-                    </LinearGradientBrush>
-                </materialDesign:Card.Background>
-                <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="0,0,663,0"><Run Text="Company"/></TextBlock>
-            </materialDesign:Card>
-            <materialDesign:Card Padding="1" Height="106" Width="152" VerticalAlignment="Center" Margin="-700,19,0,21">
-                <materialDesign:Card.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="#FF34DA34" Offset="1"/>
-                    </LinearGradientBrush>
-                </materialDesign:Card.Background>
-                <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="0,0,663,0"><Run Text="Company"/></TextBlock>
-            </materialDesign:Card>
-            <materialDesign:Card Padding="1" Height="102" Width="152" VerticalAlignment="Center" Margin="-300,19,0,25">
-                <materialDesign:Card.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="#FF6B2676" Offset="1"/>
-                    </LinearGradientBrush>
-                </materialDesign:Card.Background>
-                <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="0,0,663,0"><Run Text="Company"/></TextBlock>
-            </materialDesign:Card>
-        </StackPanel>-->
+
         <!--<Image x:Name="image" HorizontalAlignment="Left" Height="43" Margin="21,21,0,0" VerticalAlignment="Top" Width="114" Source="C:\Users\Nk\Desktop\logo.png"/>-->
-        <StackPanel  x:Name="iconNav"  Orientation="Horizontal" HorizontalAlignment="Left" Height="64" Margin="711,0,0,0" VerticalAlignment="Top" Width="521">
-            <Button x:Name="BtnIcon" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon ChartLine}" Width="60"
-       Margin="0,3"
-       />
-            <Button x:Name="BtnIcon7" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon ChartGantt}" Width="60"
-       />
-            <Button x:Name="BtnIcon9" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon charttimelinevariant}" Width="60"
-       Margin="0,12,0,11"
-       />
-            <Button x:Name="BtnIcon6" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon EmailMarkAsUnread}" Width="60"
-       Margin="0,16"
-       />
-            <Button x:Name="BtnIcon2" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon bell}"
-       />
-            <Button x:Name="BtnIcon3" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon flag}"
-       />
-            <Button x:Name="BtnIcon4" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon faceprofile}"
-       />
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Height="18" TextWrapping="Wrap" Text="Harish Menon" VerticalAlignment="Center" Width="92"/>
-            <Button x:Name="BtnIcon5" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon settingsoutline}" Height="Auto"
-       />
+        <StackPanel  x:Name="iconNav"  Orientation="Horizontal" HorizontalAlignment="Left" Height="70" Margin="698,0,0,0" VerticalAlignment="Top" Width="651">
+            <Button x:Name="BtnIcon" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon ChartLine}" Width="70" Margin="0,3"/>
+            <Button x:Name="BtnIcon7" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon ChartGantt}" Width="70"/>
+            <Button x:Name="BtnIcon9" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon charttimelinevariant}" Width="70" Margin="0,12,0,11"/>
+            <Button x:Name="BtnIcon6" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon EmailMarkAsUnread}" Width="70" Margin="0,16"/>
+            <Button x:Name="BtnIcon2" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon bell}" Width="70"/>
+            <Button x:Name="BtnIcon3" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon flag}" Width="70"/>
+            <Button x:Name="BtnIcon4" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon faceprofile}" Width="70"/>
+            <TextBlock x:Name="UserName" HorizontalAlignment="Center" Height="18" TextWrapping="Wrap" Text="Harish Menon" VerticalAlignment="Center" Width="92"/>
+            <Button x:Name="BtnIcon5" BorderThickness="0"  Background="Transparent" Foreground="White" Content="{materialDesign:PackIcon settingsoutline}" Width="70" Height="Auto"/>
         </StackPanel>
-        <Grid x:Name="nonMenu" HorizontalAlignment="Left" Height="502" Margin="208,108,0,0" 
-              VerticalAlignment="Top" Width="1024" Visibility="Hidden">
+
+        <Grid x:Name="nonMenu" Background="#FF43444F" HorizontalAlignment="Left" Height="639" Margin="159,53,0,0" 
+              VerticalAlignment="Top" Width="1204" Visibility="Hidden" >
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -115,23 +65,27 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="12*"/>
             </Grid.RowDefinitions>
-            <Canvas x:Name="menuForOptions" Grid.Column="0" Grid.Row="0" >
-                <TextBox x:Name="searchOption" Height="27" Canvas.Left="24" TextWrapping="Wrap" Text="" 
-                     Canvas.Top="30" Width="80" TextChanged="searchOption_TextChanged" />
-                <ComboBox x:Name="dropStrikePrice" Canvas.Left="280" Canvas.Top="35" Width="100" Height="22" FontFamily="Verdana" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <ComboBox x:Name="comboBox" Grid.Column="1" 
-                      Width="100" Height="22"  Canvas.Left="150" Canvas.Top="35">
-                    <ComboBoxItem Content="9/26/2019" HorizontalAlignment="Left" Width="95" />
-                    <ComboBoxItem Content="10/31/2019" HorizontalAlignment="Left" Width="95" />
-                    <ComboBoxItem Content="11/28/2019" HorizontalAlignment="Left" Width="95" />
+
+
+            <Canvas x:Name="menuForOptions" Grid.Column="0" Grid.Row="0"  >
+                <TextBox x:Name="searchOption" Height="27" Canvas.Left="171" TextWrapping="Wrap" Text="" 
+                     Canvas.Top="44" Width="80" TextChanged="searchOption_TextChanged" />
+                <ComboBox x:Name="comboBox" IsEditable="True" IsReadOnly="True" Text="Expiry Date"  Grid.Column="1" 
+                      Width="100" Height="27"  Canvas.Left="324" Canvas.Top="44">
+                    <ComboBoxItem Content="31/10/2019" HorizontalAlignment="Left" Width="100" />
+                    <ComboBoxItem Content="28/11/2019" HorizontalAlignment="Left" Width="100" />
+                    <ComboBoxItem Content="26/12/2019" HorizontalAlignment="Left" Width="100" />
                 </ComboBox>
-                <Label x:Name="label" Content="Search" Canvas.Left="24" Height="24" RenderTransformOrigin="0.675,0.625" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Verdana" Canvas.Top="6"/>
-                <Label x:Name="label1" Content="ExpDate" Canvas.Left="150" Canvas.Top="5"/>
-                <Label x:Name="label2" Content="Strike Price" Canvas.Left="280" Canvas.Top="5"/>
+                <Label x:Name="label" Content="Search" Canvas.Left="171" Height="26" RenderTransformOrigin="0.675,0.625" 
+                       HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Verdana" Canvas.Top="18"/>
+                <Label x:Name="label1" Content="Expiry Date" Canvas.Left="324" Canvas.Top="18"/>
+                <TextBlock x:Name="OptionTitle" HorizontalAlignment="Left" TextWrapping="Wrap" Text="OPTIONS" 
+                           VerticalAlignment="Top" Height="34" Width="111" FontFamily="Verdana" FontWeight="Bold" 
+                           FontSize="18" Canvas.Left="30" Canvas.Top="37"/>
             </Canvas>
-            <DataGrid x:Name="dataGridOptions" HorizontalAlignment="Left" Margin="10,10,0,0" 
+            <DataGrid x:Name="dataGridOptions" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" AlternationCount="2" AlternatingRowBackground="#FF343540" HorizontalAlignment="Left" Margin="25,10,0,0" 
                   VerticalAlignment="Top"
-                  Height="500" Width="auto"   Grid.Column="0" Grid.Row="1" SelectionChanged="dataGridOptions_SelectionChanged_1" >
+                  Height="519" Width="543"   Grid.Column="0" Grid.Row="1" SelectionChanged="dataGridOptions_SelectionChanged_1" >
                 <DataGrid.Columns>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.HeaderTemplate>
@@ -147,30 +101,40 @@
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="id" Width="90"  Binding="{Binding option_id}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Symbol" Width="100" Binding="{Binding symbol}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Expiry" Width="90"  Binding="{Binding expiry_date}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Expiry" Width="115"  Binding="{Binding expiry_date}"></DataGridTextColumn>
                     <DataGridTextColumn Header="LTP" Width="90"  Binding="{Binding ltp}"></DataGridTextColumn>
                     <DataGridTextColumn Header="oi" Width="100" Binding="{Binding oi}"></DataGridTextColumn>
                     <DataGridTextColumn Header="oi_change" Width="90"  Binding="{Binding oi_change}"></DataGridTextColumn>
                     <DataGridTextColumn Header="volume" Width="100" Binding="{Binding volume}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Type" Width="100" Binding="{Binding op_type}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Type" Width="60" Binding="{Binding op_type}"></DataGridTextColumn>
                     <DataGridTextColumn Header="p_change" Width="90"  Binding="{Binding p_change}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Strike Price" Width="100" Binding="{Binding strike_price}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Strike Price" Width="110" Binding="{Binding strike_price}"></DataGridTextColumn>
                     <DataGridTextColumn Header="iv" Width="100" Binding="{Binding iv}"></DataGridTextColumn>
+
                 </DataGrid.Columns>
             </DataGrid>
             <Canvas x:Name="menuForFutures"    Grid.Row="0" Grid.Column="0" Visibility="Hidden">
-                <TextBox x:Name="searchFuture" Height="27" Canvas.Left="24" TextWrapping="Wrap" Text="" 
-                     Canvas.Top="30" Width="80" TextChanged="searchFuture_TextChanged"/>
-                <ComboBox x:Name="expDateFut" Grid.Column="1" 
-                      Width="100" Height="22"  Canvas.Left="150" Canvas.Top="35">
-                    <ComboBoxItem Content="ComboBoxItem" HorizontalAlignment="Left" Width="95" />
+                <TextBox x:Name="searchFuture" Height="27" Canvas.Left="171" TextWrapping="Wrap" Text="" 
+                     Canvas.Top="44" Width="80" TextChanged="searchFuture_TextChanged"/>
+                <ComboBox x:Name="expDateFut" IsEditable="True" IsReadOnly="True" Text="Expiry Date"  Grid.Column="1" 
+                        Width="100" Height="27"  Canvas.Left="324" Canvas.Top="44">
+                    <ComboBoxItem Content="31/10/2019" HorizontalAlignment="Left" Width="100" />
+                    <ComboBoxItem Content="28/11/2019" HorizontalAlignment="Left" Width="100" />
+                    <ComboBoxItem Content="26/12/2019" HorizontalAlignment="Left" Width="100" />
                 </ComboBox>
 
-                <Label x:Name="labelSearchFut" Content="Search" Canvas.Left="24" Height="24" RenderTransformOrigin="0.675,0.625" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Verdana" Canvas.Top="6"/>
-                <Label x:Name="labelExpDate" Content="ExpDate" Canvas.Left="150" Canvas.Top="5"/>
+                <Label x:Name="label22" Content="Search" Canvas.Left="184" Height="26" RenderTransformOrigin="0.675,0.625" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Verdana" Canvas.Top="18"/>
+                <Label x:Name="label11" Content="Expiry Date" Canvas.Left="336" Canvas.Top="18"/>
+                <TextBlock x:Name="FutureTitle" HorizontalAlignment="Left" TextWrapping="Wrap" Text="FUTURES" 
+                           VerticalAlignment="Top" Height="34" Width="111" FontFamily="Verdana" FontWeight="Bold" 
+                           FontSize="18" Canvas.Left="30" Canvas.Top="37"/>
             </Canvas>
-            <DataGrid x:Name="dataGridFutures"  HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Margin="10,10,0,0"
-                  Visibility="Hidden" Height="500" SelectionChanged="dataGridFuturess_SelectionChanged_1">
+            <DataGrid x:Name="dataGridFutures"  HorizontalAlignment="Left" Grid.Column="0" 
+                      HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" AlternationCount="2"
+                      AlternatingRowBackground="#FF343540" Margin="25,10,0,0" 
+                  VerticalAlignment="Top"
+                  Height="519" Width="543"  Grid.Row="1" SelectionChanged="dataGridFuturess_SelectionChanged_1" 
+                      Visibility="Hidden">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.HeaderTemplate>
@@ -185,9 +149,9 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="id" Width="90"  Binding="{Binding future_id}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Symbol" Width="100" Binding="{Binding symbol}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Expiry" Width="90"  Binding="{Binding expiry_date}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="LTP" Width="90"  Binding="{Binding ltp}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Symbol" Width="120" Binding="{Binding symbol}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Expiry" Width="120"  Binding="{Binding expiry_date}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="LTP" Width="100"  Binding="{Binding ltp}"></DataGridTextColumn>
                     <DataGridTextColumn Header="oi" Width="100" Binding="{Binding oi}"></DataGridTextColumn>
                     <DataGridTextColumn Header="oi_change" Width="90"  Binding="{Binding oi_change}"></DataGridTextColumn>
                     <DataGridTextColumn Header="volume" Width="100" Binding="{Binding volume}"></DataGridTextColumn>
@@ -198,57 +162,114 @@
                 <TextBlock x:Name="titleStrategies" HorizontalAlignment="Left" Margin="33,12,0,-2" TextWrapping="Wrap" Text="STRATEGIES" 
                            VerticalAlignment="Top" FontFamily="Verdana" FontWeight="Bold" Foreground="#f1f1f1" Height="20"/>
                 <Button x:Name="button2" Content="+ ADD STRATEGY" HorizontalAlignment="Left" Margin="318,11,-163,-1" VerticalAlignment="Top"
-                                Width="127" FontFamily="Verdana" FontSize="10" Height="20"/>
+                             Click="addStrategyBtn_Click"  Width="127" FontFamily="Verdana" FontSize="10" Height="20"/>
             </Canvas>
             <Grid x:Name="workspace" Grid.Column="1" Grid.Row="1"  Margin="28,10,-149,10">
 
 
-
-
-                <TreeView x:Name="strategyTree">
+                <TreeView x:Name="strategyTree" Margin="0,0,0,25" >
                     <TreeView.Resources>
-                        <HierarchicalDataTemplate DataType="{x:Type self:Strategy}" ItemsSource="{Binding Members}">
+                        <HierarchicalDataTemplate DataType="{x:Type self:Strategy}" ItemsSource="{Binding Sections}">
                             <StackPanel Orientation="Horizontal">
 
-                                <TextBlock Text="{Binding Name}"  />
-                                <TextBlock Text="{Binding Dt}"  />
-                                <TextBlock Text=" [" Foreground="Gray" />
-                                <TextBlock Text="{Binding Members.Count}" Foreground="Gray" />
-                                <TextBlock Text="]" Foreground="Gray" />
-                                <TextBlock Text="Analyse" Background="#999"/>
+                                <TextBlock Text="{Binding Strategy_Name}"  />
+                                <TextBlock Text="   "  />
+                                <TextBlock Text="{Binding Symbol}"  />
+                                <TextBlock Text="   "  />
+                                <TextBlock Text="{Binding Expiry_Date}"  />
+                                <TextBlock Text="   "  />
+
                             </StackPanel>
                         </HierarchicalDataTemplate>
-                        <DataTemplate DataType="{x:Type self:StrategyMember}">
+                        <HierarchicalDataTemplate DataType="{x:Type self:Temp}" ItemsSource="{Binding Items}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding Name}"  />
-                                <TextBlock Text=" (" Foreground="Green" />
-                                <TextBlock Text="{Binding Age}"  />
-                                <TextBlock Text=" years)" Foreground="Green" />
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        <DataTemplate DataType="{x:Type self:OptionTrade}">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Symbol" FontSize="8"></Label>
+                                <TextBlock Text="{Binding Symbol}"  />
+                                <TextBlock Text="   "  />
+                                <Label Content="No Of Lots" FontSize="8"></Label>
+                                <TextBlock Text="{Binding Num_lots}"  />
+                                <TextBlock Text="   "  />
+                                <Label Content="Premium" FontSize="8"></Label>
+                                <TextBlock Text="{Binding Premium}"  />
+                                <TextBlock Text="   "  />
+                                <Label Content="Type" FontSize="8"></Label>
+                                <TextBlock Text="{Binding Trade_type}"  />
+                            </StackPanel>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type self:FutureTrade}">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Symbol" FontSize="8"></Label>
+                                <TextBlock Text="{Binding Symbol}"  />
+                                <TextBlock Text="   "  />
+                                <Label Content="No Of Lots" FontSize="8"></Label>
+                                <TextBlock Text="{Binding Num_lots}"  />
+                                <TextBlock Text="   "  />
+                                <Label Content="Exercise Price" FontSize="8"></Label>
+                                <TextBlock Text="{Binding Exercise_price}"  />
+                                <TextBlock Text="   "  />
+                                <Label Content="Type" FontSize="8"></Label>
+                                <TextBlock Text="{Binding Trade_type}"  />
                             </StackPanel>
                         </DataTemplate>
                     </TreeView.Resources>
                 </TreeView>
 
-
+                <Button x:Name="Analyse" Content="Analyse" Click="analyse_Click" Height="Auto" Margin="26,468,588,27"/>
+                <TextBlock Text="Select a strategy and click on Analyse" Margin="165,482,385,25" FontStyle="Italic" FontSize="10"/>
             </Grid>
+            <TextBox x:Name="newStrategy" Grid.Column="1" HorizontalAlignment="Left" Height="27"
+                     Margin="195,4,0,0" TextWrapping="Wrap" Text="New" VerticalAlignment="Top" Width="120" 
+                     FontFamily="Verdana" FontSize="12"/>
         </Grid>
-        
 
-        <!--<Grid Grid.Row="1" Grid.Column="1" Background="#FF43444F" Margin="0,0,-148,0">
-            -->
-        <Grid x:Name="DashboardMenu"   >
-            <!--<Image x:Name="image1" HorizontalAlignment="Left" Height="470" VerticalAlignment="Top" Width="943"
-               Source="" Stretch="Fill" Margin="256,108,0,0"/>-->
+        <Grid x:Name="DashboardMenu" >
+            <Canvas x:Name="stats" HorizontalAlignment="Left" Height="639" Margin="159,53,0,0" VerticalAlignment="Top" Width="1190" Background="#FF43444F">
+                <materialDesign:Card UniformCornerRadius="10" Height="97" Width="245" Canvas.Left="155" Canvas.Top="48" RenderTransformOrigin="1.953,2.198">
+                    <materialDesign:Card.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#ec008c"/>
+                            <GradientStop Color="#fc6767" Offset="1"/>
+                        </LinearGradientBrush>
+                    </materialDesign:Card.Background>
+                    <Label x:Name="funds" Content="Available Funds" HorizontalAlignment="Left" Height="34" Margin="27,20,0,0" VerticalAlignment="Top" FontSize="15" Width="121" FontWeight="Bold"/>
+                </materialDesign:Card>
+                <materialDesign:Card UniformCornerRadius="10" Height="97" Width="245" Canvas.Left="492" Canvas.Top="48">
+                    <materialDesign:Card.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#02AAB0"/>
+                            <GradientStop Color="#00CDAC" Offset="1"/>
+                        </LinearGradientBrush>
+                    </materialDesign:Card.Background>
+                    <Label x:Name="margins" Content="Utilized Margins" HorizontalAlignment="Left" Height="42" Margin="27,20,0,0" VerticalAlignment="Top" Width="120" FontSize="15" FontWeight="Bold"/>
+                </materialDesign:Card>
+                <materialDesign:Card UniformCornerRadius="10" Height="97" Width="245" Canvas.Left="814" Canvas.Top="48">
+                    <materialDesign:Card.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#DA22FF"/>
+                            <GradientStop Color="#9733EE" Offset="1"/>
+                        </LinearGradientBrush>
+                    </materialDesign:Card.Background>
+                    <Label x:Name="pnl" Content="Profit/Loss" HorizontalAlignment="Left" Height="36" Margin="27,20,0,0" VerticalAlignment="Top" Width="168" FontSize="15" FontWeight="Bold"/>
+                </materialDesign:Card>
+                <!--<Canvas Height="372" Canvas.Left="662" Canvas.Top="212" Width="444" Background="#FF343540">
+                    <control:doughnut Height="372" Canvas.Left="10" Width="434"></control:doughnut>
+                </Canvas>-->
+                <Canvas Height="381" Canvas.Left="60" Canvas.Top="212" Width="558"  Background="#FF343540">
+                    <control:RowChart Height="386" Width="558" Canvas.Top="31"></control:RowChart>
+
+                </Canvas>
+
+               
+            </Canvas>
         </Grid>
-        <!--
-        </Grid>-->
-        <!--<Border Grid.Row="1" Background="#FF43444F" Margin="0,0,-599,0" Grid.Column="1" >
-            <Image x:Name="image1" HorizontalAlignment="Left" Height="507" Margin="0,0,0,-77" VerticalAlignment="Top" Width="941" Source="C:\Users\Nk\Desktop\dd.png" Stretch="Fill"/>
-
-        </Border>-->
-        <!--<Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="186,203,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label x:Name="label" Content="ghghg" HorizontalAlignment="Left" Margin="52,128,0,0" VerticalAlignment="Top"/>-->
+        <!--<Image x:Name="image1" HorizontalAlignment="Left" Height="58" Margin="35,29,0,0" VerticalAlignment="Top" Source="images/logo.png" Width="124"/>-->
+        <Image x:Name="image1" Source="images/logo.png" HorizontalAlignment="Left" Height="48" Margin="40,53,0,0" VerticalAlignment="Top" Width="90"/>
+        <Label x:Name="name1" Content="Matador" HorizontalAlignment="Left" Height="43" Margin="40,10,0,0" VerticalAlignment="Top" Width="100" FontFamily="Calibri" FontWeight="Bold" FontSize="24"/>
 
     </Grid>
-
 </Window>

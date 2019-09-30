@@ -4,8 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DerivativeAnalysis"
+        xmlns:control = "clr-namespace:DerivativeAnalysis" 
         mc:Ignorable="d"
-        Title="analyze" Height="632" Width="1000"
+        xmlns:self="clr-namespace:DerivativeAnalysis"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        Title="analyze" Height="632" Width="1000" WindowStartupLocation="CenterScreen" 
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
@@ -15,17 +18,87 @@
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="296" Margin="94,69,0,0" VerticalAlignment="Top" Width="348" Source="C:\Users\Nk\Desktop\call.jpg"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="96,372,0,0" VerticalAlignment="Top" Height="167" Width="600"/>
-        <DataGrid x:Name="dataGrid1" HorizontalAlignment="Left" Height="224" Margin="544,102,0,0" VerticalAlignment="Top" Width="304"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="38" Margin="74,330,0,0" VerticalAlignment="Top" Width="346">
-            <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Delta" VerticalAlignment="Top" Margin="30,0,0,0"/>
-            <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Theta" VerticalAlignment="Top" Margin="30,0,0,0" Width="32"/>
 
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="15" TextWrapping="Wrap" Text="Vega" VerticalAlignment="Top" Width="66" Margin="30,0,0,0"/>
-            <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Height="12" TextWrapping="Wrap" Text="Gamma" VerticalAlignment="Top" Width="77" Margin="10,0,0,0"/>
-        </StackPanel>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="802,430,0,0" VerticalAlignment="Top" Width="125" Height="116"/>
+        <!--<DataGrid x:Name="dataGrid1" HorizontalAlignment="Left" Height="224" Margin="544,102,0,0" VerticalAlignment="Top" Width="304"/>-->
+        <!--ItemsSource="{Binding YourObservableCollection}"-->
 
+
+        <Button x:Name="AddPositionbutton" Content="Add To Positions" HorizontalAlignment="Left" Margin="801,518,0,0" VerticalAlignment="Top" Width="150" Height="53" Click="AddPositionbutton_Click"/>
+        <control:payoff Width="434" Margin="58,45,500,237"/>
+        <Grid x:Name="StrategyContainer" HorizontalAlignment="Left" Height="320" 
+              Margin="584,73,0,0" VerticalAlignment="Top" Width="367">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="54*"/>
+                <ColumnDefinition Width="313*"/>
+            </Grid.ColumnDefinitions>
+
+            <TreeView x:Name="strategyTree" Margin="0,15,0,10" FontFamily="Verdana" FontSize="14" Grid.ColumnSpan="2" >
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type self:Strategy}" ItemsSource="{Binding Sections}">
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Text="{Binding Strategy_Name}"  />
+                            <TextBlock Text="   "  />
+                            <TextBlock Text="{Binding Symbol}"  />
+                            <TextBlock Text="   "  />
+                            <TextBlock Text="{Binding Expiry_Date}"  />
+                            <TextBlock Text="   "  />
+
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type self:Temp}" ItemsSource="{Binding Items}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}"  />
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <DataTemplate DataType="{x:Type self:OptionTrade}">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Symbol" FontSize="8"></Label>
+                            <TextBlock Text="{Binding Symbol}"  />
+                            <TextBlock Text="   "  />
+                            <Label Content="No Of Lots" FontSize="8"></Label>
+                            <TextBlock Text="{Binding Num_lots}"  />
+                            <TextBlock Text="   "  />
+                            <Label Content="Premium" FontSize="8"></Label>
+                            <TextBlock Text="{Binding Premium}"  />
+                            <TextBlock Text="   "  />
+                            <Label Content="Type" FontSize="8"></Label>
+                            <TextBlock Text="{Binding Trade_type}"  />
+                        </StackPanel>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type self:FutureTrade}">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Symbol" FontSize="8"></Label>
+                            <TextBlock Text="{Binding Symbol}"  />
+                            <TextBlock Text="   "  />
+                            <Label Content="No Of Lots" FontSize="8"></Label>
+                            <TextBlock Text="{Binding Num_lots}"  />
+                            <TextBlock Text="   "  />
+                            <Label Content="Exercise Price" FontSize="8"></Label>
+                            <TextBlock Text="{Binding Exercise_price}"  />
+                            <TextBlock Text="   "  />
+                            <Label Content="Type" FontSize="8"></Label>
+                            <TextBlock Text="{Binding Trade_type}"  />
+                        </StackPanel>
+                    </DataTemplate>
+                </TreeView.Resources>
+            </TreeView>
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="93,-31,0,0" TextWrapping="Wrap" Text="Trades " VerticalAlignment="Top" FontFamily="Verdana" FontSize="16" Grid.Column="1"/>
+
+        </Grid>
+        <Canvas HorizontalAlignment="Left" Height="216" Margin="155,365,0,0" VerticalAlignment="Top" Width="252" Background="#FF4F4F4F">
+            <TextBlock x:Name="labelMaxProfit" Canvas.Left="26" TextWrapping="Wrap" Text="MaxProfit:" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Verdana" FontSize="14" Foreground="#FFCA9DF1"/>
+            <TextBlock x:Name="labelMaxLoss" Canvas.Left="26" TextWrapping="Wrap" Text="MaxLoss:" Canvas.Top="45" FontFamily="Verdana" FontSize="14" Foreground="#FFCA9DF1"/>
+            <TextBlock x:Name="labelCapReq" Canvas.Left="26" TextWrapping="Wrap" Text="Capital Req:" Canvas.Top="81" FontFamily="Verdana" FontSize="14" Foreground="#FFCA9DF1"/>
+            <TextBlock x:Name="labelBEP" Canvas.Left="26" TextWrapping="Wrap" Text="BreakEvenPts:" Canvas.Top="115" FontFamily="Verdana" FontSize="14" Foreground="#FFCA9DF1"/>
+            <TextBlock x:Name="labelCurPl" Canvas.Left="26" TextWrapping="Wrap" Text="Current P/L:" Canvas.Top="148" FontFamily="Verdana" FontSize="14" Foreground="#FFCA9DF1"/>
+            <TextBlock x:Name="labelROI" Canvas.Left="26" TextWrapping="Wrap" Text="ROI (%) :" Canvas.Top="180" FontFamily="Verdana" FontSize="14" Foreground="#FFCA9DF1"/>
+            <TextBlock x:Name="valueMaxProfit" Canvas.Left="156" TextWrapping="Wrap" Text="90.990" Canvas.Top="12" FontFamily="Verdana" FontSize="14" Foreground="#DD45F511"/>
+            <TextBlock x:Name="valueMaxLoss" Canvas.Left="156" TextWrapping="Wrap" Text="78.90" Canvas.Top="46" FontSize="14" FontFamily="Verdana" Foreground="#DDEC690E"/>
+            <TextBlock x:Name="valueCapReqd" Canvas.Left="156" TextWrapping="Wrap" Text="1222" Canvas.Top="83" FontFamily="Verdana" FontSize="14"/>
+            <TextBlock x:Name="valueBEP" Canvas.Left="156" TextWrapping="Wrap" Text="123,32,323" Canvas.Top="117" FontFamily="Verdana" FontSize="14"/>
+            <TextBlock x:Name="valueCurrPL" Canvas.Left="156" TextWrapping="Wrap" Text="-89" Canvas.Top="153" FontFamily="Verdana" FontSize="14"/>
+            <TextBlock x:Name="valueROI" Canvas.Left="156" TextWrapping="Wrap" Text="12" Canvas.Top="185" FontFamily="Verdana" FontSize="14"/>
+        </Canvas>
     </Grid>
 </Window>

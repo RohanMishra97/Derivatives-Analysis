@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Data.SqlClient;
+using System.Data;
 namespace DerivativeAnalysis
 {
     /// <summary>
@@ -19,12 +20,18 @@ namespace DerivativeAnalysis
     /// </summary>
     public partial class FutureBuy : Window
     {
+        String future_id;
+        Int32 strat_id;
+        String trade = "long";
+        Futures o = null;
         public FutureBuy(Futures x)
         {
+            o = x;
             InitializeComponent();
+            fillCombo();
+            future_id = x.Future_id.ToString();
             valueSecurityName.Text = x.Symbol;
             valueMktPrice.Text = x.Ltp.ToString();
-            valuePrice.Text = x.Ltp.ToString();
             valueVwap.Text = x.Vwap.ToString();
             valueOi.Text = x.Oi.ToString();
             valueOiChange.Text = x.Oi_change.ToString();
@@ -65,5 +72,66 @@ namespace DerivativeAnalysis
             Decimal total = a * b * c;
             valueTotal.Text = total.ToString();
         }
+        private void fillCombo()
+        {
+            String connectionString = @"Data Source= NKS\SQLEXPRESS;Integrated Security=SSPI;" + "Initial Catalog=Derivative Analysis";
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("select * from strategy where symbol = '"+o.Symbol+"'", con);
+            con.Open();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            comboBox.ItemsSource = dt.DefaultView;
+            comboBox.DisplayMemberPath = "strategy_name";
+            comboBox.SelectedValuePath = "strategy_id";
+            cmd.Dispose();
+            con.Close();
+        }
+
+        public void call_analyze_script(int strategy_id)
+        {
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            startInfo.FileName = "cmd.exe";
+            String p2s = " script.py";
+            startInfo.Arguments = "/C python " + p2s + " " + strategy_id.ToString();
+            process.StartInfo = startInfo;
+            process.Start();
+            process.WaitForExit(10000);
+        }
+        private void insert()
+        {
+            String connectionString = @"Data Source= NKS\SQLEXPRESS;Integrated Security=SSPI;" + "Initial Catalog=Derivative Analysis";
+            SqlConnection con = new SqlConnection(connectionString);
+            int res = 0;
+            String mktPrice = valuePrice.Text.ToString();
+            Decimal b = (valuePrice.Text.ToString() == "") ? 0 : Convert.ToDecimal(valuePrice.Text.ToString());
+            con.Open();
+            String q = "INSERT INTO FutureTrade (future_id,buying_date,num_lots,margin_avail,strategy_id,symbol,trade_type, exercise_price) values(";
+            q = q + "'" + future_id + "', " + "'" + DateTime.Now.ToString("M/d/yyyy") + "'," + valueNoOfLots.Text.ToString() + "," + (b * Convert.ToDecimal(0.1)).ToString() + "," + strat_id.ToString() + ", " + "'" + valueSecurityName.Text.ToString() + "'," + "'" + trade + "'" + "," + valuePrice.Text.ToString() + ")";
+            //Console.WriteLine(q);
+            SqlCommand cmd = new SqlCommand(q, con);
+            res = cmd.ExecuteNonQuery();
+            if (res < 0)
+            {
+                Console.WriteLine("Could Not Insert Trade");
+            }
+            cmd.Dispose();
+            con.Close();
+        }
+
+        private void button_Click_1(object sender, RoutedEventArgs e)
+        {
+            strat_id = Int32.Parse(comboBox.SelectedValue.ToString());
+            insert();
+            call_analyze_script(strat_id);
+            this.Close();
+        }
+        private void set_sell(object sender, RoutedEventArgs e)
+        {
+            trade = "short";
+        }
     }
 }
+

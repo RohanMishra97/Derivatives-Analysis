@@ -54,13 +54,11 @@
         <Label x:Name="labelPrice" Content="Mkt Price" Canvas.Left="215" Canvas.Top="284" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Verdana" Foreground="#FFF7E4E4"/>
         <Label x:Name="labelTotalValue" Content="TotalValue" Canvas.Left="388" Canvas.Top="284" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Verdana" Foreground="#FFF9F3F3"/>
         <RadioButton x:Name="boolBuy" Content="BUY" Canvas.Left="35" Canvas.Top="380" FontFamily="Verdana" FontSize="20" Foreground="#FF17F134" Background="#FFF1F1E5" FontWeight="Bold"/>
-        <RadioButton x:Name="boolSell" Content="SELL" Canvas.Left="202" Canvas.Top="375" FontSize="20" Foreground="#FFF30A0A" FontWeight="Bold"/>
+        <RadioButton x:Name="boolSell" Content="SELL" Canvas.Left="202" Canvas.Top="375" FontSize="20" Foreground="#FFF30A0A" FontWeight="Bold" Checked="set_sell"/>
         <ComboBox x:Name="comboBox" Canvas.Left="361" Canvas.Top="377" Width="106" FontFamily="Verdana" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <ComboBoxItem Content="Strategy1" HorizontalAlignment="Left" Width="104" Height="25" VerticalAlignment="Bottom" Foreground="#FFF5E9E9" Background="#FF767272"/>
-            <ComboBoxItem Content="Strategy2" HorizontalAlignment="Left" Width="104" VerticalAlignment="Bottom" Height="21" Foreground="#FFFBF5F5" Background="#FF666565"/>
         </ComboBox>
         <TextBlock x:Name="valueTotal" Canvas.Left="388" TextWrapping="Wrap"  Canvas.Top="263" RenderTransformOrigin="0.059,0.783" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontFamily="Verdana" FontSize="14" FontWeight="Bold" Foreground="#FFF9F5F5"/>
-        <Button x:Name="button" Content="ADD" Canvas.Left="202" Canvas.Top="437" Width="91" FontFamily="Verdana" FontWeight="Bold" FontSize="16"/>
+        <Button x:Name="AddButton" Content="ADD" Canvas.Left="202" Canvas.Top="437" Width="91" FontFamily="Verdana" FontWeight="Bold" FontSize="16" Click="button_Click_1"/>
 
     </Canvas>
 </Window>

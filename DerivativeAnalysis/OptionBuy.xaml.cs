@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Data.SqlClient;
+using System.Data;
 namespace DerivativeAnalysis
 {
     /// <summary>
@@ -19,14 +20,19 @@ namespace DerivativeAnalysis
     /// </summary>
     public partial class OptionBuy : Window
     {
+        Options o = null;
+        String opt_id;
+        Int32 strat_id;
+        String trade = "long";
         public OptionBuy(Options x)
         {
             Options obj = x;
-            
+            Options o = x;
             InitializeComponent();
+            fillCombo();
+            opt_id = x.Option_id;
             valueSecurityName.Text = x.Symbol;
             valueMktPrice.Text = x.Ltp.ToString();
-            valuePrice.Text = x.Ltp.ToString();
             valueStrikePrice.Text = x.Strike_price.ToString();
             valueOi.Text = x.Oi.ToString();
             valueOiChange.Text = x.Oi_change.ToString();
@@ -53,7 +59,7 @@ namespace DerivativeAnalysis
             lot_dict.Add("INFY", 1200);
 
             labelLotSize.Content = "x" + lot_dict[x.Symbol];
-            valueMktPrice.Text = x.Ltp.ToString();
+            valuePrice.Text = x.Ltp.ToString();
         }
 
         private void valueNoOfLots_TextChanged(object sender, TextChangedEventArgs e)
@@ -69,6 +75,66 @@ namespace DerivativeAnalysis
             Int32 c = (lotSize == "") ? 0 : Convert.ToInt32(lotSize);
             Decimal total = a * b * c;
             valueTotal.Text = total.ToString();
+        }
+        private void fillCombo()
+        {
+            String connectionString = @"Data Source= NKS\SQLEXPRESS;Integrated Security=SSPI;" + "Initial Catalog=Derivative Analysis";
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("select * from strategy where symbol = '" + o.Symbol + "'", con);
+            con.Open();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            comboBox.ItemsSource = dt.DefaultView;
+            comboBox.DisplayMemberPath = "strategy_name";
+            comboBox.SelectedValuePath = "strategy_id";
+            cmd.Dispose();
+            con.Close();
+        }
+        private void insert()
+        {
+            Console.WriteLine("Inserting Options Trade");
+            String connectionString = @"Data Source= NKS\SQLEXPRESS;Integrated Security=SSPI;" + "Initial Catalog=Derivative Analysis";
+            SqlConnection con = new SqlConnection(connectionString);
+            int res = 0;
+            con.Open();
+            String q = "INSERT INTO OptionTrade (option_id,buying_date,num_lots,premium,strategy_id,symbol,trade_type) values(";
+            q = q + "'" + opt_id + "', " + "'" + DateTime.Now.ToString("M/d/yyyy") + "'," + valueNoOfLots.Text.ToString() + "," + valueMktPrice.Text.ToString() + "," + strat_id.ToString() + ", " + "'" + valueSecurityName.Text.ToString() + "'," + "'" + trade + "'" + ")";
+            Console.WriteLine(q);
+            SqlCommand cmd = new SqlCommand(q, con);
+            res = cmd.ExecuteNonQuery();
+            if (res < 0)
+            {
+                Console.WriteLine("Could Not Insert Trade");
+            }
+            cmd.Dispose();
+            con.Close();
+        }
+
+        public void call_analyze_script(int strategy_id)
+        {
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            startInfo.FileName = "cmd.exe";
+            String p2s = " script.py";
+            startInfo.Arguments = "/C python " + p2s + " " + strategy_id.ToString();
+            process.StartInfo = startInfo;
+            process.Start();
+            process.WaitForExit(10000);
+        }
+
+        private void button_Click_1(object sender, RoutedEventArgs e)
+        {
+            strat_id = Int32.Parse(comboBox.SelectedValue.ToString());
+            insert();
+            call_analyze_script(strat_id);
+            this.Close();
+        }
+
+        private void set_sell(object sender, RoutedEventArgs e)
+        {
+            trade = "short";
         }
     }
 }

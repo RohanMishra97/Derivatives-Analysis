@@ -20,40 +20,35 @@ namespace DerivativeAnalysis
     /// </summary>
     public partial class analyze : Window
     {
-        DataSet vDs;
-        SqlDataAdapter vAdap;
-        public analyze()
+        Strategy st = null;
+        List<Strategy> Strategies = null;
+        public analyze(Strategy s)
         {
+            st = s;
             InitializeComponent();
-            getData();
+            valueMaxProfit.Text = s.Max_Profit.ToString();
+            valueMaxLoss.Text = s.Max_Loss.ToString();
+            valueCapReqd.Text = s.Capt_Reqd.ToString();
+            valueBEP.Text = s.Bep.ToString();
+            valueCurrPL.Text = s.Currrent_Pl.ToString();
+            valueROI.Text = s.Roi.ToString();
+            Strategies = new List<Strategy>();
+            Strategies.Add(s);
+            strategyTree.ItemsSource = Strategies;
         }
-        void getData()
+
+        private void AddPositionbutton_Click(object sender, RoutedEventArgs e)
         {
             using (SqlConnection connection = new SqlConnection())
             {
-
-                connection.ConnectionString =
-                    @"Data Source= NKS\SQLEXPRESS;Integrated Security=SSPI;" + "Initial Catalog=Recruitment";
+                connection.ConnectionString = @"Data Source= NKS\SQLEXPRESS;Integrated Security=SSPI;" + "Initial Catalog=Derivative Analysis";
                 connection.Open();
-                Console.WriteLine("connected to the database");
-
-                string sql2 = "Select vFirstName,vLastName,cPhone,dDateOfApplication from Externalcandidate";
-                vDs = new DataSet();
-                vAdap = new SqlDataAdapter(sql2, connection);
-                vAdap.Fill(vDs);
-
-                this.dataGrid.DataContext = vDs.Tables[0];
-                this.dataGrid.ItemsSource = vDs.Tables[0].DefaultView;
-
-                string sql3 = "Select vFirstName,vLastName,cPhone, dDateOfApplication from Externalcandidate";
-                vDs = new DataSet();
-                vAdap = new SqlDataAdapter(sql3, connection);
-                vAdap.Fill(vDs);
-
-                this.dataGrid1.DataContext = vDs.Tables[0];
-                this.dataGrid1.ItemsSource = vDs.Tables[0].DefaultView;
+                String query = "UPDATE Strategy SET position = 1 WHERE strategy_id = " + st.Strategy_Id.ToString();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.ExecuteNonQuery();
+                this.Close();
                 connection.Close();
-
+                cmd.Dispose();
             }
         }
     }

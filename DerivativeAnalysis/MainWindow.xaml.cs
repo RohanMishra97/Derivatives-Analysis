@@ -27,24 +27,133 @@ namespace DerivativeAnalysis
     {
         DataSet vDs;
         SqlDataAdapter vAdap;
+        List<Strategy> Strategies = null;
         public MainWindow()
         {
             InitializeComponent();
             getData();
-            List<Strategy> Strategie = new List<Strategy>();
+            Strategies = FillStrategy();
+            strategyTree.ItemsSource = Strategies;
+        }
 
-            //Strategy strategy1 = new Strategy() {  = "SBI GAINERS", Dt = Convert.ToDateTime("08/15/2019") };
-            //strategy1.Members.Add(new StrategyMember() { Name = "John Doe", Age = 42 });
-            //strategy1.Members.Add(new StrategyMember() { Name = "Jane Doe", Age = 39 });
-            //strategy1.Members.Add(new StrategyMember() { Name = "Sammy Doe", Age = 13 });
-            //Strategie.Add(strategy1);
+        public List<Strategy> FillStrategy()
+        {
+            List<Strategy> res = new List<Strategy>();
 
-            //Strategy strategy2 = new Strategy() { Name = "TCS GAINERS", Dt = Convert.ToDateTime("08/15/2019") };
-            //strategy2.Members.Add(new StrategyMember() { Name = "Mark Moe", Age = 31 });
-            //strategy2.Members.Add(new StrategyMember() { Name = "Norma Moe", Age = 28 });
-            //Strategie.Add(strategy2);
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString =
+                    @"Data Source= NKS\SQLEXPRESS;Integrated Security=SSPI;" + "Initial Catalog=Derivative Analysis";
+                connection.Open();
+                Console.WriteLine("Database Connected.");
 
-            strategyTree.ItemsSource = Strategie;
+                DataTable dt = new DataTable();
+                string query = "Select * from Strategy";
+                SqlCommand cmd = new SqlCommand(query, connection);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                sda.Fill(dt);
+                foreach (DataRow row in dt.Rows)
+                {
+                    int stId = Convert.ToInt32(row[0]);
+                    Console.WriteLine(row[1]);
+                    Console.WriteLine(row[9]);
+                    Console.WriteLine(row[10]);
+
+                    Strategy strategy1 = new Strategy(Convert.ToInt32(row[0]), row[1].ToString(), Convert.ToInt32(row[2]),
+                        row[3].ToString(), Convert.ToDecimal(row[4]), Convert.ToDecimal(row[5]), Convert.ToDecimal(row[6]),
+                      row[7].ToString(), row[8].ToString(), Convert.ToDecimal(row[9]), Convert.ToDecimal(row[10]), 0);
+
+
+
+                    string queryOpt = "Select * from OptionTrade where strategy_id = " + $"{stId}";
+                    SqlCommand cmdOpt = new SqlCommand(queryOpt, connection);
+                    SqlDataAdapter sdaOpt = new SqlDataAdapter(cmdOpt);
+                    DataTable dtOpt = new DataTable();
+                    sdaOpt.Fill(dtOpt);
+                    foreach (DataRow rowOpt in dtOpt.Rows)
+                    {
+                        strategy1.Option_Trades.Add(new OptionTrade
+                        {
+                            Opt_trade_id = Convert.ToInt32(rowOpt[7]),
+                            Option_id = rowOpt[0].ToString(),
+                            Buying_date = rowOpt[1].ToString(),
+                            Num_lots = Convert.ToInt32(rowOpt[2]),
+                            Premium = Convert.ToDecimal(rowOpt[3]),
+                            Strategy_id = Convert.ToInt32(rowOpt[4]),
+                            Symbol = rowOpt[5].ToString(),
+                            Trade_type = rowOpt[6].ToString()
+                        });
+                    }
+
+                    string queryFut = "Select * from FutureTrade where strategy_id = " + $"{stId}";
+                    SqlCommand cmdfut = new SqlCommand(queryFut, connection);
+                    SqlDataAdapter sdafut = new SqlDataAdapter(cmdfut);
+                    DataTable dtFut = new DataTable();
+                    sdafut.Fill(dtFut);
+                    foreach (DataRow rowFut in dtFut.Rows)
+                    {
+                        strategy1.Future_Trades.Add(new FutureTrade
+                        {
+                            Fut_trade_id = Convert.ToInt32(rowFut[8]),
+                            Future_id = rowFut[0].ToString(),
+                            Buying_date = rowFut[1].ToString(),
+                            Num_lots = Convert.ToInt32(rowFut[2]),
+                            Margin_avail = Convert.ToInt64(rowFut[3]),
+                            Strategy_id = Convert.ToInt32(rowFut[4]),
+                            Symbol = rowFut[5].ToString(),
+                            Trade_type = rowFut[6].ToString(),
+                            Exercise_price = Convert.ToDecimal(rowFut[7])
+                        });
+                    }
+
+
+                    res.Add(strategy1);
+                } //end of foreach
+                return res;
+            }
+        }
+
+        private void addStrategyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //add strategy to the database here
+            String strategy_name = newStrategy.Text;
+            Decimal x = new Decimal(0.00);
+            string y = "";
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString =
+                    @"Data Source= NKS\SQLEXPRESS;Integrated Security=SSPI;" + "Initial Catalog=Derivative Analysis";
+                connection.Open();
+                Console.WriteLine("Database Connected.");
+
+                string query = $"insert into Strategy(strategy_name, user_id, symbol, max_profit, max_loss, capital_reqd,expiry_date, bep, roi, curr_pl, position) values('{strategy_name}', 1,'{y}'," + x.ToString() + "," + x.ToString() + "," + x.ToString() + ", '30/09/2019', " + x.ToString() + ", " + x.ToString() + ", " + x.ToString() +  ",0)";
+                Console.WriteLine(query);
+
+                SqlCommand cmd = new SqlCommand(query, connection);
+                int res = cmd.ExecuteNonQuery();
+                if (res < 0)
+                {
+                    Console.WriteLine("cant insert");
+                }
+                else
+                {
+                    Console.WriteLine("inserted succefully");
+
+                }
+                //Strategies = null;
+                //Strategies = FillStrategy();
+                strategyTree.ItemsSource = FillStrategy();
+            }
+        }
+        private void analyse_Click(object sender, RoutedEventArgs e)
+        {
+            int a = strategyTree.Items.IndexOf(strategyTree.SelectedItem);
+            Strategy st = Strategies[a];
+            string name = st.Strategy_Name;
+            analyze obj = new analyze(st);
+            obj.Show();
+           
+           // MessageBox.Show(name);
         }
 
         public DataSet from_sql(string TableName, String[] Columns, String[] Filters, Boolean orderBy = true) {
@@ -150,7 +259,9 @@ namespace DerivativeAnalysis
                 Decimal iv = Convert.ToDecimal(row[10]);
                 Options o = new DerivativeAnalysis.Options(opt_id, symbol, expiry_date, ltp, oi, oichange, volume, optype, pchange, strikeprice, iv);
                 OptionBuy optionPop = new OptionBuy(o);
-                optionPop.Show();
+                optionPop.ShowDialog();
+                Strategies = FillStrategy();
+                strategyTree.ItemsSource = Strategies;
             }
         }
         private void dataGridFuturess_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -161,8 +272,11 @@ namespace DerivativeAnalysis
             {
                 Futures f = new DerivativeAnalysis.Futures(row[0].ToString(), row[1].ToString(), row[2].ToString(), Convert.ToDecimal(row[3]), Convert.ToInt64(row[4]), Convert.ToInt64(row[5]), Convert.ToInt64(row[6]), Convert.ToDecimal(row[7]));
                 FutureBuy futurePop = new FutureBuy(f);
-                futurePop.Show();
-
+                futurePop.ShowDialog();
+                //Console.WriteLine("Future Buy is closed");
+                //this.Strategies = null;
+                Strategies = FillStrategy();
+                strategyTree.ItemsSource = Strategies;
             }
         }
 
@@ -176,6 +290,9 @@ namespace DerivativeAnalysis
 
         private void OptionButton_Click(object sender, RoutedEventArgs e)
         {
+            OptionButton.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF43444F"));
+            FutureButton.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF343540"));
+            DashboardButton.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF343540"));
             dataGridFutures.Visibility = Visibility.Collapsed;
             menuForFutures.Visibility = Visibility.Collapsed;
 
@@ -187,6 +304,9 @@ namespace DerivativeAnalysis
 
         private void FutureButton_Click(object sender, RoutedEventArgs e)
         {
+            FutureButton.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF43444F"));
+            OptionButton.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF343540"));
+            DashboardButton.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF343540"));
             dataGridOptions.Visibility = Visibility.Collapsed;
             menuForOptions.Visibility = Visibility.Collapsed;
 
@@ -215,6 +335,9 @@ namespace DerivativeAnalysis
 
         private void DashboardButton_Click(object sender, RoutedEventArgs e)
         {
+            DashboardButton.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF43444F"));
+            FutureButton.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF343540"));
+            OptionButton.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF343540"));
             nonMenu.Visibility = Visibility.Collapsed;
             DashboardMenu.Visibility = Visibility.Visible;
             

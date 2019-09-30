@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DerivativeAnalysis
 {
-    class OptionTrade
+    public class OptionTrade
     {
         int opt_trade_id;
         public int Opt_trade_id

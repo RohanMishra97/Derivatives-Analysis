@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="DerivativeAnalysis.payoff"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DerivativeAnalysis"
+             xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
+             mc:Ignorable="d"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Wpf:CartesianChart x:Name="cartesianChart1" HorizontalAlignment="Left" Margin="60,10,0,0" VerticalAlignment="Top" Height="300" Width="340" Background="#FF222E31"/>
+      
+    </Grid>
+</UserControl>

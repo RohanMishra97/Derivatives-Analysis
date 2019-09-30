@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\
+E:\DerivativeAnalysis\DerivativeAnalysis\obj\Debug\
 DerivativeAnalysis
 none
 false
 DEBUG;TRACE
-C:\Users\Nk\Desktop\DerivativeAnalysis\DerivativeAnalysis\App.xaml
-8-1463915238
+E:\DerivativeAnalysis\DerivativeAnalysis\App.xaml
+11-1631674610
 
-231406841697
-17419534471
-analyze.xaml;chart.xaml;chartUserControl.xaml;FutureBuy.xaml;MainWindow.xaml;OptionBuy.xaml;OptionFutures.xaml;Trade.xaml;
+271374177019
+17-1755259970
+analyze.xaml;chart.xaml;chartUserControl.xaml;doughnut.xaml;FutureBuy.xaml;MainWindow.xaml;OptionBuy.xaml;OptionFutures.xaml;payoff.xaml;RowChart.xaml;Trade.xaml;
 
 True
 

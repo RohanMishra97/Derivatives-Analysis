@@ -255,12 +255,29 @@ if max_l == -np.inf:
     max_l = 1
 #print (max_p, max_l)
 
+def print_payoff(pl):
+	x = []
+	y = []
+	i=0
+	for k,v in pl.items():
+		if i%100 == 0:
+			x.append(str(round(k/scale, 2)));
+			y.append(str(round(v/scale,2)));
+		i = i+1
+	x = ", ".join(x);
+	y = ", ".join(y);
+	with open(str(strategy_id)+"_x.txt", "w") as f:
+		f.write(x)
+	with open(str(strategy_id)+"_y.txt",'w') as f:
+		f.write(y)
+
 bep = get_breakeven(plc)
 #print (bep)
 
 capt = get_capital_reqd(trades)
 curr_pl = get_curr_pl(plc)
 roi = round(curr_pl/capt * (12),2)
+print_payoff(plc)
 #delta,theta,vega,gamma = get_greeks(trades)
 #print(delta, theta, vega, gamma)
 

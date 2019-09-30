@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="DerivativeAnalysis.RowChart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DerivativeAnalysis"
+             mc:Ignorable="d" 
+              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+
+        <lvc:CartesianChart Name="chart1" Series="{Binding senderChart}" Margin="48, 48, 48, 24" Background="#FF222E31">
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Labels="{Binding Labels}" Title="Companies">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Step="1" Stroke="{x:Null}"/>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
+
+
+    </Grid>
+</UserControl>

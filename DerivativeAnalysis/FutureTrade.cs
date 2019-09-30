@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DerivativeAnalysis
 {
-    class FutureTrade
+    public class FutureTrade
     {
         Int32 strategy_id;
         Int32 fut_trade_id;
